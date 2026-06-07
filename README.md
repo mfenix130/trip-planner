@@ -119,7 +119,7 @@ trip-planner/
 ├── .claude/
 │   └── settings.json                 # Tool permissions
 ├── agent/
-│   └── SKILL.md                      # Orchestrator — runs the full workflow
+│   └── AGENT.md                      # Orchestrator — runs the full workflow
 ├── skills/
 │   ├── destination-research/
 │   │   └── SKILL.md                  # Web search tourist spots, hours, coordinates
@@ -152,4 +152,4 @@ trip-planner/
 | `budget-estimator` | Rough daily cost breakdown (entry fees, transport, meals) |
 | `weather-advisor` | Best travel season and expected weather for your trip dates |
 
-To add a new skill: create `skills/<skill-name>/SKILL.md` and add a stage for it in `agent/SKILL.md`.
+To add a new skill: create `skills/<skill-name>/SKILL.md` and add a stage for it in `agent/AGENT.md`.

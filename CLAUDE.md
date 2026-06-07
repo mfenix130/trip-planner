@@ -18,7 +18,7 @@ Use the trip-planner agent for:
 **Pace options:** `relaxed` (2–3 spots/day) · `moderate` (3–4 spots/day) · `packed` (5–6 spots/day)
 **Interests:** optional filter — e.g. history, food, art, nature, nightlife, shopping, architecture
 
-The agent reads `agent/SKILL.md` and runs all stages in sequence, writing output to `trips/<name>/`.
+The agent reads `agent/AGENT.md` and runs all stages in sequence, writing output to `trips/<name>/`.
 
 ## Skills (run individually if needed)
 

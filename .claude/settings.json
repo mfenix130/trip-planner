@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Read(**)",
+      "Write(./trips/**)",
+      "Bash(mkdir -p *)",
+      "Bash(ls *)",
+      "Bash(find . *)"
+    ],
+    "deny": [
+      "Write(./skills/**)",
+      "Write(./agent/**)",
+      "Write(./.claude/**)",
+      "Write(./CLAUDE.md)",
+      "Write(./README.md)"
+    ]
+  }
+}

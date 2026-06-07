@@ -16,7 +16,7 @@ Orchestrate the full trip planning workflow: research destinations, build a day-
 
 ## Purpose
 
-Takes destination cities, number of days, and user preferences — runs all planning stages in sequence — and delivers a complete, ready-to-use itinerary as a Markdown table and a CSV file.
+Takes destination cities, number of days, and user preferences — runs all planning stages in sequence — and delivers flight options, a complete day-by-day itinerary as a Markdown table, and a CSV file.
 
 ---
 
@@ -30,7 +30,9 @@ Collect from the user before starting:
 4. **Pace** — `relaxed`, `moderate`, or `packed` *(required — ask if not provided)*
 5. **Interests** — optional filter: history, food, art, nature, nightlife, shopping, architecture
 6. **Start date** — optional; if provided, itinerary shows actual dates (Mon 14 Apr); otherwise uses Day 1, Day 2, etc.
-7. **Skip stages** — any stages the user wants to skip *(optional)*
+7. **Travel dates** — departure and return dates *(optional; required for flight research — skip Stage 0 if not provided)*
+8. **From** — origin airport or city *(optional; defaults to SFO and SJC)*
+9. **Skip stages** — any stages the user wants to skip *(optional)*
 
 ---
 
@@ -49,6 +51,24 @@ Use `mkdir -p trips/<trip-name>` via bash. All skill outputs will be written her
 ## Stage Execution
 
 Run stages in order. Check the skip list and existing files before each stage.
+
+---
+
+### Stage 0: Flight Research
+
+**Skill file:** `skills/flight-research/SKILL.md`
+
+**Run when:** travel dates were provided by the user.
+
+**Skip when:** no travel dates provided, user explicitly skips, OR `flights.md` already exists and no new dates were given.
+
+**How to execute:**
+1. Read `skills/flight-research/SKILL.md` in full.
+2. Use the provided dates and destinations to search for flight options.
+3. Default origin airports are **SFO** and **SJC** — use the user's `from` value if provided.
+4. Write output to: `trips/<trip-name>/flights.md`
+
+**On completion:** summarise the recommended route and rough price range in one sentence before moving to Stage 1.
 
 ---
 
@@ -158,6 +178,7 @@ Write a final report to: `trips/<trip-name>/trip-summary.md`
 
 ## Files
 
+- `flights.md` — flight options and price ranges with booking links *(if dates were provided)*
 - `destinations.md` — all researched spots with hours and coordinates
 - `itinerary.md` — full day-by-day schedule with Maps links (Markdown)
 - `itinerary.csv` — same itinerary, Excel/Sheets-importable
@@ -195,6 +216,8 @@ Use the trip-planner agent for:
 - Pace: moderate
 - Interests: history, food, art
 - Start date: 14 April 2026
+- Travel dates: 14 April – 21 April 2026
+- From: SFO
 ```
 
 The agent will run all stages in sequence and deliver `trip-summary.md` with an overview, plus `itinerary.md` and `itinerary.csv` as the primary outputs.

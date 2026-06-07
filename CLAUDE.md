@@ -13,10 +13,15 @@ Use the trip-planner agent for:
 - Trip name: italy-2026
 - Pace: moderate
 - Interests: history, food, art
+- Start date: 14 April 2026
+- Travel dates: 14 April – 21 April 2026
+- From: SFO
 ```
 
 **Pace options:** `relaxed` (2–3 spots/day) · `moderate` (3–4 spots/day) · `packed` (5–6 spots/day)
 **Interests:** optional filter — e.g. history, food, art, nature, nightlife, shopping, architecture
+**From:** origin airport or city — defaults to **SFO and SJC** if not specified
+**Travel dates:** required for flight research (Stage 0); itinerary runs without them
 
 The agent reads `agent/AGENT.md` and runs all stages in sequence, writing output to `trips/<name>/`.
 
@@ -24,6 +29,7 @@ The agent reads `agent/AGENT.md` and runs all stages in sequence, writing output
 
 | Skill | Invoke with | Output |
 |---|---|---|
+| `flight-research` | "Use the flight-research skill for trips/[name], flying [dates] from [origin]" | `flights.md` |
 | `destination-research` | "Use the destination-research skill for [cities], output to trips/[name]" | `destinations.md` |
 | `itinerary-builder` | "Use the itinerary-builder skill on trips/[name], [N] days, [pace]" | `itinerary.md` |
 | `maps-enricher` | "Use the maps-enricher skill on trips/[name]" | updates `itinerary.md` |

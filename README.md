@@ -38,10 +38,13 @@ Use the trip-planner agent for:
 - Pace: moderate
 - Interests: history, food, art
 - Start date: 14 April 2026
+- Travel dates: 14 April – 21 April 2026
+- From: SFO
 ```
 
 **Required fields:** Destinations, Number of days, Trip name, Pace
-**Optional:** Interests, Start date
+**Optional:** Interests, Start date, Travel dates, From
+**Note:** Flight research (Stage 0) only runs when travel dates are provided. Default origin is SFO and SJC — override with `From`.
 
 **Pace options:**
 - `relaxed` — 2–3 main spots per day; long lunches, unhurried
@@ -52,6 +55,7 @@ Use the trip-planner agent for:
 
 | Stage | What it does | Output |
 |---|---|---|
+| Flight Research *(if dates given)* | Searches flight prices, routes, and booking links from SFO/SJC | `flights.md` |
 | Destination Research | Web searches each city for top spots, hours, coordinates | `destinations.md` |
 | Itinerary Building | Schedules spots by day, groups by geography, estimates travel time | `itinerary.md` |
 | Maps Enrichment | Adds a Google Maps link to every place | updates `itinerary.md` |
@@ -121,6 +125,8 @@ trip-planner/
 ├── agent/
 │   └── AGENT.md                      # Orchestrator — runs the full workflow
 ├── skills/
+│   ├── flight-research/
+│   │   └── SKILL.md                  # Search flight prices and routes from SFO/SJC (or custom origin)
 │   ├── destination-research/
 │   │   └── SKILL.md                  # Web search tourist spots, hours, coordinates
 │   ├── itinerary-builder/
@@ -149,7 +155,7 @@ trip-planner/
 |---|---|
 | `hotel-finder` | Recommended hotels per city and budget tier, with booking links |
 | `restaurant-finder` | Dining picks grouped by neighborhood and day |
-| `budget-estimator` | Rough daily cost breakdown (entry fees, transport, meals) |
+| `budget-estimator` | Rough daily cost breakdown (entry fees, transport, meals, flights) |
 | `weather-advisor` | Best travel season and expected weather for your trip dates |
 
 To add a new skill: create `skills/<skill-name>/SKILL.md` and add a stage for it in `agent/AGENT.md`.
